@@ -9,6 +9,7 @@ const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
+const nocache = require('nocache');
 
 const initializePassport = require('./passport-config');
 initializePassport(
@@ -22,6 +23,7 @@ const users = [];
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(flash());
+app.use(nocache());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
